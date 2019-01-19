@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1{
+            width:200px;
+            height:200px;
+            background: #F00;
+            border:1px solid black;
+        }
+    </style>
+    <script>
+        window.onload =function(){
+            startMove();
+        }
+        function startMove(){
+            setInterval(function(){
+                var oDiv=document.getElementById('div1');
+                oDiv.style.width =parseInt(getStyle(oDiv,'width')) -1+'px'; /*获取的是字符串 oDiv.style.width只能取到元素行内样式的宽度值*/
+            },30)
+        }
+        function getStyle(obj,attr){ /*对象与属性*/
+            /*currentStyle针对IE浏览器 getComputedStyle 针对firefox浏览器*/
+            if(obj.currentStyle){
+                return obj.currentStyle[attr];
+            }else{
+                return getComputedStyle(obj,false)[attr];
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id='div1'></div>
+</body>
+</html>

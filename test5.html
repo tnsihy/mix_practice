@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul,
+    li {
+        list-style: none;
+    }
+
+    ul li {
+        width: 200px;
+        height: 100px;
+        background: yellow;
+        margin-bottom: 20px;
+        border: 4px solid red;
+        filter: alpha(opacity=30);
+        opacity: 0.3;
+    }
+</style>
+<script>
+    window.onload = function () {
+        var aLi = document.getElementsByTagName('li');
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].timer = null; //修复bug：计时器各自的
+            aLi[i].onmousemove = function () {
+                startMove(this, 400); //this为当前的aLi[i],目标宽度为400
+            }
+            aLi[i].onmouseout = function () {
+                startMove(this, 200);
+            }
+        }
+    }
+    //var timer = null; //有bug 计时器是共用的 清空计时器不知是清空谁的。↑↑↑
+    function startMove(obj, iTarget) {
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function () {
+            var icur = parseInt(getStyle(obj, 'height'));
+            var speed = (iTarget - icur) / 10;
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+            if (icur == iTarget) {
+                clearInterval(obj.timer);
+            } else {
+                obj.style['height'] = icur + speed + 'px';
+            }
+        }, 30)
+    }
+    function getStyle(obj, attr) { /*对象与属性*/
+        /*currentStyle针对IE浏览器 getComputedStyle 针对firefox浏览器*/
+        if (obj.currentStyle) {
+            return obj.currentStyle[attr];
+        } else {
+            return getComputedStyle(obj, false)[attr];
+        }
+    }
+</script>
+
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+
+</html>

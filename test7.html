@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul,
+    li {
+        list-style: none;
+    }
+
+    ul li {
+        width: 200px;
+        height: 100px;
+        background: yellow;
+        margin-bottom: 20px;
+        border: 1px solid red;
+        filter: alpha(opacity=30);
+        opacity: 0.3;
+    }
+</style>
+<script>
+    window.onload = function () {
+        //alert(Math.round(0.07*100)); /*bug3： 0.07*100=7.00000000000001 */ /*Math.round四舍五入整数*/
+        var Li1 = document.getElementById('li1');
+        Li1.onmouseover = function () { /*使Li1的高度变成400和100*/
+            startMove(this, 'opacity', 100);
+        }
+        Li1.onmouseout = function () {
+            startMove(this, 'opacity', 30);
+        }
+    }
+
+    var alpha = 30;
+    function startMove(obj, attr, iTarget) {
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function () {
+            /*为解决该bug，此处做一个判断：*/
+            var icur = 0;
+            if (attr == 'opacity') { /*修复bug1：获取opacity为0.3 →parseFloat*/
+                icur = Math.round(parseFloat(getStyle(obj, attr)) * 100); /*bug3：后台透明度有问题 如7*100=7.0000000000001 */
+            } else {
+                icur = parseInt(getStyle(obj, attr)); /*若是传过来的宽度或高度*/
+            }
+            //var icur = parseInt(getStyle(obj, attr)); /* bug1：opacity: 0.3;转化为int类型???*/
+            var speed = (iTarget - icur) / 8;
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+            if (icur == iTarget) {
+                clearInterval(obj.timer);
+            } else {
+                if (attr = 'opacity') {
+                    obj.style.filter = 'alpha(opacity' + (icur + speed) + ')';
+                    obj.style.opacity = (icur + speed) / 100;
+                }else{
+                    obj.style[attr] = icur + speed + 'px'; /*修复bug2*/
+                }
+                //obj.style[attr] = icur + speed + 'px'; /*bug2：opacity: 0.3 没有单位但此处却有单位*/
+            }
+        }, 30)
+    }
+
+    function getStyle(obj, attr) { /*对象与属性*/
+        /*currentStyle针对IE浏览器 getComputedStyle 针对firefox浏览器*/
+        if (obj.currentStyle) {
+            return obj.currentStyle[attr];
+        } else {
+            return getComputedStyle(obj, false)[attr];
+        }
+    }
+</script>
+
+<body>
+    <ul>
+        <li id='li1'></li>
+    </ul>
+</body>
+
+</html>

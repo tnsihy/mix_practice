@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background: red;
+            left: -200px;
+            position: relative;
+        }
+
+        #div1 span {
+            width: 20px;
+            height: 50px;
+            border: 1px solid blue;
+            border-left: none;
+            font-size: 14px;
+            color: blue;
+            padding: 5px;
+            position: relative;
+            left: 200px;
+            top: 75px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById('div1');
+            oDiv.onmouseover = function () {
+                startMove(0);
+            }
+            oDiv.onmouseout = function () {
+                startMove(-200);
+            }
+        }
+        var timer = null;
+        function startMove(iTarget) {
+            clearInterval(timer);
+            var oDiv = document.getElementById('div1');
+            timer = setInterval(function () {
+                var speed = (iTarget - oDiv.offsetLeft) / 10;  //这就不是匀速运动了  速度不同
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed); //若speed>0则向上取整，若<0则向下取整
+                if (oDiv.offsetLeft == iTarget) {
+                    clearInterval(timer);
+                } else {
+                    oDiv.style.left = oDiv.offsetLeft + speed + 'px'; //有bug 要使收回时向下取整
+                }
+            }, 50)
+        }
+    </script>
+</head>
+
+<body>
+    <div id="div1">
+        <span id="share">分享</span>
+    </div>
+</body>
+
+</html>
