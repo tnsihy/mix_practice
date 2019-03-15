@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*创建一个数组
+        var colors = new Array();
+        var colors = new Array(20);
+        var colors = new Array('red', 'blue', 'green');
+        
+        在使用Array构造函数时可将new省略
+        var colors = new Array(3);
+        var colors = Array(3);
+        var colors = new Array('Grey');
+        var colors = Array('Grey');
+        
+        创建一个空数组
+        var names=[];*/
+
+        /*利用length这个属性可从数组的末尾移除或添加新项
+        △移除
+        var colors = ['red', 'blue', 'green']; 初始的colors.length结果为3
+        colors.length = 2;将length设置为2，即在数组末尾移除一项
+        alert(colors[2]);结果为undefined
+        
+        △添加
+        var colors = ['red', 'blue', 'green'];
+        colors.length=4;
+        alert(colors[3]);结果为undefined
+        
+        添加内容：
+        var colors = ['red', 'blue', 'green'];
+        colors[colors.length] = 'black';在位置3添加
+        colors[colors.length] = 'yellow';在位置4添加
+        */
+
+        /*
+        var colors = ['red', 'blue', 'green']; 
+        if(colors instanceof Array){
+            alert('通过value instance Array确定某个对象是不是数组。我是数组');
+        }
+        if(Array.isArray(colors)){
+            alert('通过Array.isArray(value)最终确定某个值是不是数组，不管在哪个全局执行环境创建的。我是数组');
+        }*/
+
+        /*
+        var person1 = {
+            toString: function () {
+                return 'person1-toString';
+            },
+            toLocaleString: function () {
+                return 'person1-toLocaleString';
+            }
+        };
+
+        var person2 = {
+            toString: function () {
+                return 'person2-toString';
+            },
+            toLocaleString: function () {
+                return 'person2-toLocaleString';
+            }
+        };
+
+        var person = [person1, person2];
+        alert(person);
+        alert(person.toString());
+        alert(person.toLocaleString());*/
+
+        /*var values =['0','1','5','10','15'];
+        values.sort(compare);
+        alert(values);
+
+        function compare(value1,value2){
+            return value1 - value2;
+        }*/
+
+        var numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
+        var everyResult = numbers.every(function (item, index, array) {
+            return (item > 2);
+        })
+        alert(everyResult);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 函数名首字母大写-->
+    <!-- 构造函数可用来创建特定类型的对象。也可创建自定义的构造函数，定义自定义对象类型的属性和方法。
+    优点：
+    缺点：每个方法都要在每个实例上重新创建一遍  -->
+    <script type="text/javascript">
+    function Person(name,age,job){
+        this.name = name;
+        this.age = age;
+        this.job = job;
+        this.outPutName = function () {
+            alert(this.name);
+          };
+    };
+
+    var person1 = new Person('Mike',20,'Engineer');
+    person1.outPutName();
+
+    /* 将outPutName属性设置成全局的函数，那么person1和person2对象就共享了在全局作用域中定义的同一个outPutName()函数
+    这样确实解决了两个函数做同一件事情的问题。
+    问题：如果对象需要定义多个函数，那么就要定义多个全局函数，就没有封装性可言。*/
+    </script>
+</body>
+</html>

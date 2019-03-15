@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #content {
+            width: 200px;
+            height: 200px;
+            background-color: #ccc;
+        }
+    </style>
+    <script src="https://www.imooc.com/static/lib/jquery/1.9.1/jquery.js"></script>
+</head>
+
+<body>
+    <div id="content">
+        透明度测试
+    </div>
+    <script>
+        $('#content').animate({
+            opacity:0.4
+        },1000,function(){
+            alert('动画完成');
+        });/*1000是速度*/
+    </script>
+</body>
+
+</html>

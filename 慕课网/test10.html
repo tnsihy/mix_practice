@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        ul li {
+            width: 200px;
+            height: 100px;
+            background: yellow;
+            margin-bottom: 20px;
+            border: 1px solid red;
+            filter: alpha(opacity=30);
+            opacity: 0.3;
+        }
+    </style>
+    <script src="move.js"></script>
+    <script>
+        window.onload=function(){
+            var oLi =document.getElementById('li1');
+            oLi.onmouseover=function(){
+                /*startMove(oLi,'width',400);
+                startMove(oLi,'height',200);  只有高在做运动，宽想要运动时计时器刚开始就被高度运动的计时器清除*/
+                /*故要用到JSON使多个物体同时运动*/
+                startMove(oLi,{width:200,height:200,opacity:100}); /*bug1:width为201时，只有宽度达到了要求 高度和透明度没有达到要求*/
+            }                                        /*原因是move.js中没有判断是否每个属性都达到了目标*/
+            oLi.onmouseout=function(){
+                startMove(oLi,{width:200,height:100,opacity:30});
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li id="li1"></li>
+    </ul>
+</body>
+
+</html>

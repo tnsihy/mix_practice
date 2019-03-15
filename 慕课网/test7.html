@@ -45,26 +45,29 @@
         clearInterval(obj.timer);
         obj.timer = setInterval(function () {
             /*为解决该bug，此处做一个判断：*/
+            //1.取当前的值
             var icur = 0;
             if (attr == 'opacity') { /*修复bug1：获取opacity为0.3 →parseFloat*/
                 icur = Math.round(parseFloat(getStyle(obj, attr)) * 100); /*bug3：后台透明度有问题 如7*100=7.0000000000001 */
-            } else {
+            } else { /*修复bug3：Math.round*/
                 icur = parseInt(getStyle(obj, attr)); /*若是传过来的宽度或高度*/
             }
             //var icur = parseInt(getStyle(obj, attr)); /* bug1：opacity: 0.3;转化为int类型???*/
+            //2.算速度
             var speed = (iTarget - icur) / 8;
             speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+            //3.检测停止
             if (icur == iTarget) {
                 clearInterval(obj.timer);
             } else {
-                if (attr = 'opacity') {
-                    obj.style.filter = 'alpha(opacity' + (icur + speed) + ')';
+                if (attr == 'opacity') {
+                    obj.style.filter = 'alpha(opacity:' + (icur + speed) + ')';
                     obj.style.opacity = (icur + speed) / 100;
                 }else{
                     obj.style[attr] = icur + speed + 'px'; /*修复bug2*/
                 }
-                //obj.style[attr] = icur + speed + 'px'; /*bug2：opacity: 0.3 没有单位但此处却有单位   */
             }
+            //obj.style[attr] = icur + speed + 'px'; /*bug2：opacity: 0.3 没有单位但此处却有单位   */
         }, 30)
     }
 

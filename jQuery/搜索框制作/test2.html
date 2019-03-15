@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<head>
+    <title>bing search</title>
+    <style type="text/css">
+        body {
+            background-color: #333;
+        }
+
+        .bg-div {
+            position: relative;
+            text-align: center;
+            margin: 0 auto;
+            height: 690px;
+            width: 1228px;
+            background-image: url(http://img.mukewang.com/52da5e7d0001c0f813660768.jpg);
+        }
+
+        .logo {
+            float: left;
+            background: url(http://img.mukewang.com/52da5e530001eea901070053.jpg) no-repeat;
+            margin: -4px 18px 0 0;
+            height: 53px;
+            width: 107px;
+        }
+
+        .search-form {
+            float: left;
+            background-color: #fff;
+            width: 407px;
+            padding: 5px;
+        }
+
+        .search-input {
+            float: left;
+            border: 0;
+            font-size: 100%;
+            width: 375px;
+            outline: none;
+            height: 29px;
+            line-height: 29px;
+        }
+
+        .search-submit {
+            float: left;
+            height: 29px;
+            width: 29px;
+            background: transparent url(http://img.mukewang.com/52da5df800012b1e02220137.jpg) no-repeat -30px -107px;
+            border: 0;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .search-box {
+            top: 20%;
+            left: 8%;
+            position: absolute;
+        }
+
+        .suggest {
+            width: 416px;
+            background-color: #fff;
+            border: 1px solid #999;
+        }
+
+        .suggest ul {
+            list-style: none;
+        }
+
+        .suggest ul li {
+            padding: 3px;
+            font-size: 14px;
+            line-height: 27px;
+            cursor: pointer;
+        }
+
+        .suggest ul li:hover {
+            text-decoration: underline;
+            background-color: #e5e5e5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-div">
+        <div class="search-box">
+            <div class="logo"></div>
+            <form action="https://cn.bing.com/search" target="_blank" method="get" class="search-form" id="search_form">
+                <input class="search-input" type="text" name="q" id="search_input">
+                <input class="search-submit" type="submit" value="" />
+            </form>
+        </div>
+    </div>
+    <div class="suggest" id="search-suggest" style="display: none">
+        <ul id="search-result">
+            <li>搜素结果1</li>
+            <li>搜素结果2</li>
+            <li>搜素结果3</li>
+        </ul>
+    </div>
+    <script>
+        var getDOM = function (id) {
+            return document.getElementById(id);
+        }
+        var addEvent = function (id, event, fn) {
+            var el = getDOM(id) || document;
+            if (el.addEventListener) {
+                /*绑定事件*/
+                el.addEventListener(event, fn, false);
+            } else if (el.attachEvent) {
+                /*IE绑定事件*/
+                el.attachEvent('on' + event, fn);
+            }
+        }
+        var getElementLeft = function (element) {
+            /*offsetLeft是获得距离父元素左边的距离，父元素是search-box*/
+            var actualLeft = element.offsetLeft;
+            /*offsetParent是个只读属性,返回最近显示指定位置的容器元素的引用*/
+            var current = element.offsetParent;
+
+            while (current != null) {
+                /*父元素的offsetLeft+form表单的offsetLeft=form表单到浏览器左边的距离*/
+                actualLeft += current.offsetLeft;
+                current = current.offsetParent;
+            }
+            return actualLeft;
+        }
+
+        var getElementTop = function (element) {
+            var actualTop = element.offsetTop;
+            var current = element.offsetParent; /*距离该子元素最近的进行过定位的父元素*/
+
+            while (current != null) {
+                actualTop += current.offsetTop;
+                current = current.offsetParent;
+            }
+            return actualTop;
+        }
+
+        var ajaxGet = function (url, callback) {
+            var _xhr = null;
+            if (window.XMLHttpRequest) {
+                _xhr = new window.XMLHttpRequest(); /*非IE浏览器*/
+            } else if (window.ActiveXObject) {
+                _xhr = new ActiveXObject('Msxml2.XMLHTTP');
+            }
+            _xhr.onreadystatechange = function () {
+                if (_xhr.readyState == 4 && _xhr.status == 200) {
+                    callback(JSON.parse(_xhr.responseText));
+                }
+            }
+            _xhr.open('get', url, false);
+            _xhr.send(null);
+        }
+
+        var delegateEvent = function () {
+            addEvent(document, event, function (e) {
+                if (e.target.nodeName == target.toUpperCase()) {
+                    fn.call(e.target);
+                }
+            })
+        }
+
+        addEvent('search_input', 'keyup', function () {
+            var searchText = getDOM('search_input').value;
+            ajaxGet('http://api.bing.com/qsonhs.aspx?q=') + searchText,
+                function (d) {
+                    var d = d.AS.Results[0].Suggests;
+                    var html = "";
+                    for (var i = 0; i < d.length; i++) {
+                        html += '<li>' + d[i].Txt + '</li>';
+                    }
+                    getDOM('search-result').innerHTML = html;
+                    getDOM('search-suggest').style.top = getElementTop(getDOM('search_form')) + 38 + 'px';
+                    getDOM('search-suggest').style.left = getElementLeft(getDOM('search_form')) + 'px';
+                    getDOM('search-suggest').style.position = 'absolute';
+                    getDOM('search-suggest').style.display = 'block';
+                };
+        });
+
+        delegateEvent('li', 'click', function () {
+            var keyword = this.innerHTML;
+            Location.href = 'http://cn.bing.com/search?q=' + keyword;
+        })
+    </script>
+</body>
+
+</html>

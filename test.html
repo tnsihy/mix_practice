@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="person"></div>
+
+    <script type="text/javascript">
+        var personExtend = Vue.extend({
+            template: "<p><a :href='URL'>{{Name}}</a></p>",
+            data: function () {
+                return {
+                    Name: 'jgchen',
+                    URL: 'http://www.baidu.com'
+                }
+            }
+        });
+
+        new personExtend().$mount('#person');
+    </script>
+</body>
+
+</html>

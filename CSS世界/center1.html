@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #main {
+            text-align: center;
+        }
+
+        .box {
+            padding: 10px;
+            background-color: red;
+            display: inline-block;
+            width: 200px;
+        }
+
+        #content {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div class="box">
+            <p id="content">文字内容</p>
+        </div>
+        <p><button id="btnMore">更多文字</button></p>
+    </div>
+</body>
+<script>
+    var oContent = document.getElementById('content');
+    var oButton = document.getElementById('btnMore');
+    if (oContent & oButton) {
+        oButton.onclick = function () {
+            oContent.innerHTML += '+添加文字';
+        }
+    }
+</script>
+
+</html>

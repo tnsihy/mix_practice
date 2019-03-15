@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 创建对象：工厂模式 -->
+    <!-- 工厂模式
+    优点：解决了创建多个相似对象的问题
+    缺点：没有解决对象识别的问题，即怎样知道一个对象的类型。 -->
+    <script type="text/javascript">
+        function createPerson(name, age, job) {
+            var o = new Object();
+            o.name = name;
+            o.age = age;
+            o.job = job;
+            // 函数声明
+            o.outPutName = function () {
+                alert(this.name);
+            };
+            return o;
+        }
+        var person1 = createPerson('Mike',20,'Engineer');
+        person1.outPutName();//函数调用
+    </script>
+</body>
+
+</html>

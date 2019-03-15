@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 原型模式 
+    prototype(原型)属性，这个属性是一个指针，指向一个对象，对象包含由特定类型的所有实例共享的属性和方法。-->
+    <script>
+        function Person() {
+            //构造函数为空
+        }
+
+        Person.prototype.name = 'jgchen';
+        Person.prototype.age = 20;
+        Person.prototype.job = 'Engineer';
+        Person.prototype.outPutName = function () {
+            alert(this.name);
+        };
+
+        var person1 = new Person();
+        person1.outPutName();
+        var person2 = new Person();
+        person1.outPutName();
+
+        alert(person1.outPutName == person2.outPutName);
+        alert(Person.prototype.isPrototypeOf(person1));
+        // 如果[[Prototype]]指向调用isPrototypeOf()方法的对象(Person.prototype)，那么就返回true
+        alert(Object.getPrototypeOf(person1) == Person.prototype);
+        // ↑↑↑ 返回[[Prototype]]指针的值
+        alert(Object.getPrototypeOf(person1).name);
+    </script>
+</body>
+
+</html>

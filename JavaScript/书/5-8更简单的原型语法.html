@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 更简单的原型语法 采用字面量 -->
+    <script type="text/javascript">
+        function Person() {
+
+        }
+
+        Person.prototype = {
+            name: 'jgchen',
+            age: 20,
+            job:'Engineer',
+            sayName:function(){
+                alert(this.name);
+            }
+        };
+
+    </script>
+</body>
+
+</html>

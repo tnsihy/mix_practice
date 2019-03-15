@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>W3Cschool教程(w3cschool.cn)</title>
+    <style>
+        img {
+            width: 33%;
+            height: auto;
+            float: left;
+            max-width: 235px;
+        }
+        .blur { /*第二*/
+             -webkit-filter: blur(4px); 
+             /* 给图像设置高斯模糊*/
+            filter: blur(4px);
+        }
+        .brightness {
+            -webkit-filter: brightness(250%);
+            /* 	给图片应用一种线性乘法，使其看起来更亮或更暗。 */
+            filter: brightness(250%);
+        }
+        .contrast {
+            -webkit-filter: contrast(180%);
+            /* 调整图像的对比度 */
+            filter: contrast(180%);
+        }
+        .grayscale {
+            -webkit-filter: grayscale(100%);
+            /* 将图像转换为灰度图像。 */
+            filter: grayscale(100%);
+        }
+        .huerotate {
+            -webkit-filter: hue-rotate(180deg);
+            /* 给图像应用色相旋转。 */
+            filter: hue-rotate(180deg);
+        }
+        .invert {
+            -webkit-filter: invert(100%);
+            /* 反转输入图像。 */
+            filter: invert(100%);
+        }
+        .opacity {
+            -webkit-filter: opacity(50%);
+            /* 转化图像的透明程度。 */
+            filter: opacity(50%);
+        }
+        .saturate {
+            -webkit-filter: saturate(7);
+            /* 转换图像饱和度。 */
+            filter: saturate(7);
+        }
+        .sepia {
+            -webkit-filter: sepia(100%);
+            /* 将图像转换为深褐色。 */
+            filter: sepia(100%);
+        }
+        .shadow {
+            -webkit-filter: drop-shadow(8px 8px 10px green);
+            /* 给图像设置一个阴影效果。 */
+            filter: drop-shadow(8px 8px 10px green);
+        }
+    </style>
+</head>
+
+<body>
+    <p><strong>注意:</strong> Internet Explorer <span lang="no-bok">或 Safari 5.1 (及更早版本)</span> 不支持该属性。</p>
+    <img src="01.jpg" alt="Pineapple" width="300" height="300">
+    <img class="blur" src="01.jpg" alt="Pineapple" width="300" height="300">
+    <img class="brightness" src="01.jpg" alt="Pineapple" width="300" height="300">
+    <img class="contrast" src="01.jpg" alt="Pineapple" width="300" height="300">
+    <img class="grayscale" src="01.jpg" alt="Pineapple" width="300" height="300">
+    <img class="huerotate" src="01.jpg" alt="Pineapple" width="300" height="300">
+    <img class="invert" src="01.jpg" alt="Pineapple" width="300" height="300">
+    <img class="opacity" src="01.jpg" alt="Pineapple" width="300" height="300">
+    <img class="saturate" src="01.jpg" alt="Pineapple" width="300" height="300">
+    <img class="sepia" src="01.jpg" alt="Pineapple" width="300" height="300">
+    <img class="shadow" src="01.jpg" alt="Pineapple" width="300" height="300">
+</body>
+
+</html>

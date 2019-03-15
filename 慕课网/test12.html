@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin-top: 20px;
+        }
+
+        #move {
+            width: 300px;
+            border: 1px solid #ccc;
+            margin: 0 auto;
+            padding: 10px;
+            overflow: hidden;
+            background: #e6e3e3;
+        }
+
+        #move a {
+            display: inline-block;
+            width: 58px;
+            height: 25px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            text-align: center;
+            margin: 10px 17px;
+            position: relative;
+            padding-top: 70px;
+            /*图片与文字之间*/
+            color: #9c9c9c;
+            /*字体颜色*/
+            font-size: 12px;
+            text-decoration: none;
+            line-height: 25px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        #move a i {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            display: inline-block;
+            width: 100%;
+            filter: alpha(opacity=100);
+            opacity: 1;
+        }
+
+        #move a p {
+            margin-top: 0px;
+        }
+
+        #move a:hover {
+            color: #f00;
+        }
+
+        #move img {
+            border: none;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+    <script src="move.js"></script>
+    <script>
+        window.onload = function () {
+            var oMove = document.getElementById('move');
+            var aList = oMove.getElementsByTagName('a');
+            for (var i = 0; i < aList.length; i++) {
+                aList[i].onmouseover = function () {
+                    var _this = this.getElementsByTagName('i')[0];
+                    startMove(_this, { top: -25, opacity: 0 }, function () { //1.移出视线范围
+                        //使图片旋转一圈回来
+                        _this.style.top=30+'px'; //2.马上置回一个位置，要低于20
+                        startMove(_this, { top: 20, opacity: 100 }) //3.从30变为20
+                    });//因为没有回来故执行一个回调函数
+                }
+                aList[i].onmouseout = function () {
+
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id='move'>
+        <a href="javascript:void(0)"><i><img src="01.png" /></i>
+            <p>狗狗</p>
+        </a>
+        <a href="javascript:void(0)"><i><img src="02.png" /></i>
+            <p>黄牛</p>
+        </a>
+        <a href="javascript:void(0)"><i><img src="03.png" /></i>
+            <p>犀牛</p>
+        </a>
+        <a href="javascript:void(0)"><i><img src="04.png" /></i>
+            <p>老鼠</p>
+        </a>
+        <a href="javascript:void(0)"><i><img src="05.png" /></i>
+            <p>猴子</p>
+        </a>
+        <a href="javascript:void(0)"><i><img src="06.png" /></i>
+            <p>鱼儿</p>
+        </a>
+    </div>
+</body>
+
+</html>

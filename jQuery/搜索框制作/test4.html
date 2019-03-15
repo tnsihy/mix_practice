@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>淘宝搜索框</title>
+    <style>
+        @font-face{
+font-family: iconfont;
+src: url(http://g.tbcdn.cn/tb/icon-font/1.1.5/iconfont.eot);
+}
+*{
+padding: 0;
+margin: 0;
+}
+.search-{
+margin-top: 10px;
+}
+a{
+text-decoration: none;
+font-size: 14px;
+color: #999;
+}
+.search-tips{
+float: right;
+padding: 5px 10px 0 16px;
+}
+.search-button{
+float: right;
+}
+.btn-search{
+background: #F63;
+width: 100px;
+height: 45px;
+color: #FFF;
+font-size: 18px;
+border: 0;
+cursor: pointer;
+text-align: center;
+line-height: 45px;
+}
+.search-common-pannel input{
+height: 39px;
+line-height: 39px;
+width: 100%;
+border: 0 none;
+outline: 0;
+background: #FFF;
+}
+.search-common-pannel{
+height: 39px;
+background: #F50;
+overflow: hidden;
+padding: 3px 0 3px 76px;
+}
+ul{
+list-style: none;
+display: block;
+}
+.search-box{
+position: absolute;
+top: 13px;
+left: 2px;
+width: 74px;
+height: 39px;
+overflow: hidden;
+background: #FFF;
+display: block;
+}
+.search-box li{
+display: none;
+height: 39px;
+line-height: 39px;
+overflow: hidden;
+text-align: center;
+border: 1px solid #CCC;
+border-top: none;
+}
+.search-box .selected{
+background: #e5e5e5;
+display: block;
+}
+.trigger-hover{
+height: auto;
+}
+.trigger-hover li{
+display: block;
+}
+ 
+</style>
+
+</head>
+
+<body>
+    <div class="search-">
+        <div>
+            <ul id="search-tab" class="search-box">
+                <li id="tab_1" class="selected">
+                    <a href="#">宝贝</a>
+                </li>
+                <li id="tab_2">
+                    <a href="#">店铺</a>
+                </li>
+            </ul>
+        </div>
+        <div class="searchPannel">
+            <form>
+                <div class="search-tips">
+                    <a href="#">高级<br />搜索</a>
+                </div>
+                <div class="search-button">
+                    <button class="btn-search" type="submit">搜 索</button>
+                </div>
+                <div class="search-common-pannel">
+                    <input type="text" x-webkit-speech="">
+                    <i></i>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+<script>
+    var getDOM = function (id) {
+        return document.getElementById(id);
+    }
+
+    var addEvent = function (id, event, fn) {
+        var el = getDOM(id) || document;
+        if (el.addEventListener) {
+            el.addEventListener(event, fn, false);
+        } else {
+            el.attachEvent('on' + event, fn);
+        }
+    }
+
+    // 添加个变量用于保存当前选择的Tab，这样当鼠标离开时，选择的也是保存的Tab
+    var curSelected = "tab_1";
+
+    // 创建一个函数，用于互斥选择
+    function selectTab(id) {
+        if (id == "tab_1") {
+            getDOM("tab_2").className = '';
+        } else {
+            getDOM("tab_1").className = '';
+        }
+        getDOM(id).className = 'selected';
+    }
+
+    addEvent('search-tab', 'mouseover', function () {
+        if (this.className.indexOf('trigger-hover') < 0) {
+            this.className += ' trigger-hover';
+        }
+    });
+    addEvent('search-tab', 'mouseout', function () {
+        getDOM('search-tab').className = 'search-box';
+        selectTab(curSelected);
+    });
+
+    addEvent('tab_1', 'mouseover', function () {
+        selectTab('tab_1');
+    });
+
+    addEvent('tab_2', 'mouseover', function () {
+        selectTab('tab_2');
+    });
+
+    addEvent('tab_1', 'click', function () {
+        curSelected = 'tab_1';
+        selectTab(curSelected);
+        getDOM('search-tab').className = 'search-box';
+    });
+    addEvent('tab_2', 'click', function () {
+        curSelected = 'tab_2';
+        selectTab(curSelected);
+        getDOM('search-tab').className = 'search-box';
+    });
+</script>
+
+</html>

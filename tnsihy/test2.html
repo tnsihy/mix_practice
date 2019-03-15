@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        h2,p{
+            margin: 5px 5px;
+        }
+        button.dropbtn{
+            width:80px;
+            height: 40px;
+            background-color: rgb(51, 189, 104);
+            border:none;
+            color:#fff;
+        }
+        div.dropdown{
+            margin-left:20px;
+            
+        }
+        div.dropdown-content a{
+            text-decoration: none;
+            color:black;
+            display: none;
+            height: 25px;
+            line-height: 25px;
+            width:150px;
+            text-align: center;
+        }
+        div.dropdown-content{
+            width:150px;
+            box-shadow: 1px 3px 2px #ccc,-1px 0 2px #ccc;
+        }
+        button.dropbtn:hover{
+            background-color: rgb(57, 158, 96);
+        }
+        .dropdown:hover .dropdown-content a{
+            display: block;
+        }
+        div.dropdown-content a:hover{
+            background-color: rgb(212, 205, 205);
+        }
+    </style>
+</head>
+
+<body>
+    <h2>下拉菜单</h2>
+    <p>鼠标移动到按钮上打开下拉菜单。</p>
+    <div class="dropdown">
+        <button class="dropbtn">下拉菜单</button>
+        <div class="dropdown-content">
+            <a href="http://www.w3cschool.cn">W3Cschool教程 1</a>
+            <a href="http://www.w3cschool.cn">W3Cschool教程 2</a>
+            <a href="http://www.w3cschool.cn">W3Cschool教程 3</a>
+        </div>
+    </div>
+</body>
+
+</html>

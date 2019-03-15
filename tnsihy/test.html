@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>taobao搜索框</title>
+    <style>
+        *{
+        margin: 0;
+        padding: 0;
+    }
+    @font-face{
+        font-family: iconfont;
+        src: url(http://g.tbcdn.cn/tb/icon-font/1.1.5/iconfont.eot);
+        src: url(http://g.tbcdn.cn/tb/icon-font/1.1.5/iconfont.eot?#iefix) format("embedded-opentype"),
+        url(http://g.tbcdn.cn/tb/icon-font/1.1.5/iconfont.woff) format("woff"),
+        url(http://g.tbcdn.cn/tb/icon-font/1.1.5/iconfont.tff) format("truetype"),
+        url(http://g.tbcdn.cn/tb/icon-font/1.1.5/iconfont.svg#uxiconfont) format("svg");
+        }
+    body{
+        font:12px/1.5 tahoma,arial,sans-serif;
+    }
+    .search-container{
+        position: relative;
+    }
+    .search-list{
+        position: absolute;
+        left:20px;
+        top:0px;
+        overflow: hidden;
+        height: 34px;
+        /* 要限定高度 */
+    }
+    .search-list ul li{
+        list-style: none;
+        height: 34px;
+        line-height: 34px;
+        width:67px;
+        background: rgb(75, 168, 196); 
+        text-align: center;
+        display: none;
+    }
+    .search-list ul li a{
+        text-decoration: none;
+        color:#fff;
+    }
+    .search-pannel{
+        margin:30px 20px;
+    }
+    .search-text{
+        float: left;
+        background-color: rgb(75, 168, 196); 
+        padding:0 0 0 65px;
+        overflow: hidden;
+    } 
+    .search-text input{
+        height:30px;
+        width:400px;
+        border-radius: 4px 0 0 4px;
+        outline: none;
+        border:2px solid rgb(75, 168, 196); 
+        background-color:#fff;
+    }
+    .iconfont{
+        font-family: iconfont;
+        font-size:12px;
+        font-style: normal;
+        position: absolute;
+        left:90px;
+        top:8.5px;
+        color:#ccc;
+    }
+    .search-button{
+        float: left;
+    }
+    .btn{
+        height: 34px;
+        width:60px;
+        border:none;
+        border-radius: 0 4px 4px 0;
+        color:#fff;
+        background: rgb(75, 168, 196);
+        outline: none;
+        cursor: pointer;
+    }
+    .search-high{
+        float: left;
+        padding:0 0 0 5px;
+    }
+    .search-high a{
+        text-decoration: none;
+        color:#6c6c6c;
+    }
+    .list-nohidden{
+        height: auto;
+    }
+    .list-nohidden ul li{ /*ul*/
+        display: block;
+    }
+    .search-list .selected{
+        display: block;
+        background: rgb(41, 94, 155); 
+    }
+    </style>
+</head>
+
+<body>
+    <div class="search-container">
+        <div class="search-list" id="search-tab">
+            <ul>
+                <li id="tab_1" class="selected"><a href="#">全部</a></li>
+                <li id="tab_2"><a href="#">天猫</a></li>
+                <li id="tab_3"><a href="#">店铺</a></li>
+            </ul>
+        </div>
+        <div class="search-pannel">
+            <form>
+                <div class="search-text">
+                    <input type="text">
+                    <i class="iconfont">ő</i>
+                </div>
+                <div class="search-button">
+                    <button class="btn">搜索</button>
+                </div>
+                <div class="search-high">
+                    <a href="#">高级<br />搜索</a>
+                    <!-- 放在button前的原因是：当float：right时先执行的是高级搜索 -->
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    //封装获取id
+    var getDOM = function (id) {
+        return document.getElementById(id);
+    }
+
+    //封装绑定事件
+    var addEvent = function (id, event, fn) {
+        /*event表示事件*/
+        var element = getDOM(id) || document; /*element对象表示HTML元素*/
+        if (element.addEventListener) {
+            element.addEventListener(event, fn, false);
+        } else if (element.attachEvent) {
+            element.attachEvent('on' + event, fn); /*IE*/
+        }
+    }
+
+    addEvent('search-tab', 'mouseover', function () {
+        if (this.className.indexOf('list-nohidden') < 0) {
+            this.className += ' list-nohidden';
+        }
+    })
+    addEvent('search-tab', 'mouseout', function () {
+        this.className = 'search-list';
+    })
+
+    var _tab1 = getDOM('tab_1');
+    var _tab2 = getDOM('tab_2');
+    var _tab3 = getDOM('tab_3');
+
+    addEvent('tab_1','mouseover',function () {
+        if (this.className.indexOf('selected') < 0) {
+            this.className = 'selected';
+        }
+        _tab2.className = '';
+        _tab3.className = '';
+      })
+
+    addEvent('tab_2', 'mouseover', function () {
+        if (this.className.indexOf('selected') < 0) {
+            this.className = 'selected';
+        }
+        _tab1.className = '';
+        _tab3.className = '';
+    })
+    addEvent('tab_3', 'mouseover', function () {
+        if (this.className.indexOf('selected') < 0) {
+            this.className = 'selected';
+        }
+        _tab1.className = '';
+        _tab2.className = '';
+    })
+
+
+    addEvent('tab_1', 'click', function () {
+        if (this.className.indexOf('selected') < 0) {
+            this.className = 'selected';
+        }
+        _tab2.className = '';
+        _tab3.className = '';
+        getDOM('search-tab').className = 'search-list';
+    })
+    addEvent('tab_2', 'click', function () {
+        if (this.className.indexOf('selected') < 0) {
+            this.className = 'selected';
+        }
+        _tab1.className = '';
+        _tab3.className = '';
+        getDOM('search-tab').className = 'search-list';
+    })
+    addEvent('tab_3', 'click', function () {
+        if (this.className.indexOf('selected') < 0) {
+            this.className = 'selected';
+        }
+        _tab1.className = '';
+        _tab2.className = '';
+        getDOM('search-tab').className = 'search-list';
+    })
+</script>
+
+</html>

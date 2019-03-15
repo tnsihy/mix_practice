@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*创建object实例
+          第1种方法
+        var person = new Object();
+        person.name='jgchen';
+        person.age=20;
+        
+        第2种方法
+        var people = {
+            name:'jgchen',
+            age:20
+        };*/
+
+        /*函数demo()接受一个名为args的参数，这个参数可能带有name或age属性，也可能都没有
+        function demo(args) {
+            var output = '';通过typeof判断属性是否存在
+            if (typeof args.name == 'string') {
+                output += 'Name:' + args.name + '\n';
+            }
+            if (typeof args.age == 'number') {
+                output += 'Age:' + args.age + '\n';
+            }
+            alert(output);
+        }
+        demo({
+            name: 'Marry',
+            age: 25
+        });
+        demo({
+            name: 'Mike' 两次调用传递的参数虽然不同，但函数都能正常使用哦
+        });*/
+
+        /*如何访问对象属性
+        var person = new Object();
+        person.name='jgchen';
+        person.age=20;
+        
+        第1种方法：点表示法
+        alert(person.name);结果为jgchen
+        alert(person.age);结果为20
+        
+        第2种方法：方括号表示法
+        alert(person['name']);结果为jgchen
+        alert(person['age']);结果为20
+        △优点是：也可通过变量来访问属性
+        var reName='name';
+        alert(person[reName]);结果为jgchen
+        */
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        /*Object.defineProperty定义/修改某个属性默认值
+        var book = {
+            _year: 2004,
+            edition: 1
+        };
+
+        year为访问器属性 包含一个getter和setter函数
+        Object.defineProperty(book, 'year', {
+            get: function () {
+                return this._year;
+            },
+            set: function (newValue) {
+                if (newValue > 2004) {
+                    this._year = newValue;
+                    this.edition += newValue - 2004;
+                }
+            }
+        });
+
+        book.year = 2005;
+        alert(book.edition); */
+
+        /* 定义多个属性
+        var book = {};
+        Object.defineProperties(book, {
+            _year: {
+                writable: true,
+                value: 2004
+            },
+            edition: {
+                writable: true,
+                value: 1
+            },
+            year: {
+                get: function () {
+                    return this._year;
+                },
+                set: function (newValue) {
+                    if (newValue > 2004) {
+                        this._year = newValue;
+                        this.edition += newValue - 2004;
+                    }
+                }
+            }
+        });
+
+        book.year = 2005;
+        alert(book.edition);*/
+
+        var book = {};
+        Object.defineProperties(book, {
+            _year: {
+                value: 2004
+            },
+            edition: {
+                value: 1
+            },
+            year: {
+                get: function () {
+                    return this._year;
+                },
+                set: function (newValue) {
+                    if (newValue > 2004) {
+                        this._year = newValue;
+                        this.edition += newValue - 2004;
+                    }
+                }
+            }
+        });
+
+        var descriptor1 = Object.getOwnPropertyDescriptor(book, "_year");
+        document.write(descriptor1.value);
+        document.write(descriptor1.configurable);
+        document.write(descriptor1.enumerable);
+        document.write(typeof descriptor1.get);
+
+        document.write("<br />--------------------<br />");
+        
+        var descriptor2 = Object.getOwnPropertyDescriptor(book, "year");
+        document.write(descriptor2.value);
+        document.write(descriptor2.configurable);
+        document.write(descriptor2.enumerable);
+        document.write(typeof descriptor2.get);
+    </script>
+</body>
+
+</html>

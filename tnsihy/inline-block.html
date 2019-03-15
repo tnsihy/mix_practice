@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container{
+            background-color: #ccc;
+            position: fixed;
+            left:0;
+            top:0;
+            width:100%;
+            height:100%;/*这5个要一起才有作用，把浏览器窗口全覆盖*/
+            text-align: center;
+        }
+        .container::after{
+            content: "";
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+        .content{
+            display: inline-block;
+            border:1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            未知宽高元素窗口水平垂直居中(拖动右下角改变宽高)"
+        </div>
+    </div>
+</body>
+
+</html>

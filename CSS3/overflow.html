@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>W3Cschool教程(w3cschool.cn)</title>
+    <style>
+        div.test {
+            white-space: nowrap; /*使可溢出*/
+            width: 12em;
+            overflow: hidden; /*将溢出部分隐藏*/
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <p>以下 div 容器内的文本无法完全显示，可以看到它被裁剪了。</p>
+    <p>div 使用 "text-overflow:ellipsis":</p>
+    <div class="test" style="text-overflow:ellipsis;">This is some long text that will not fit in the box</div>
+    <p>div 使用 "text-overflow:clip":</p>
+    <div class="test" style="text-overflow:clip;">This is some long text that will not fit in the box</div>
+    <p>div 使用自定义字符串 "text-overflow: &gt;&gt;"(只在 Firefox 浏览器下有效):</p>
+    <div class="test" style="text-overflow:'>>';">This is some long text that will not fit in the box</div>
+    <div class="test">This is some long text that will not fit in the box</div>
+</body>
+
+</html>
