@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 设置背景色 -->
+    <style>
+        canvas{
+            background-color:#33cc99;
+            display: block;
+            margin:0 auto;
+            width:500px;
+            height:500px;
+        }
+    </style>
+</head>
+<body>
+    <!-- canvas画布 -->
+    <canvas id="canvas"></canvas>
+    <script>
+    /* 在canvas画布中绘制图形，需要通过js代码绘制*/
+    //1 获取画布canvas对象
+    var canvas = document.getElementById('canvas');
+    //2 从画布对象中取出画图工具箱
+    var tools = canvas.getContext('2d');
+    //3 从工具箱中取出要使用的工具
+    tools.moveTo(100,100);
+    tools.lineTo(200,200);
+    //4 指定要绘制图形的坐标
+    tools.stroke();
+    //5 绘制（画图）
+    
+
+    </script>
+</body>
+</html>

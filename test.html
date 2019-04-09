@@ -1,30 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script type="text/javascript" src="../assets/js/vue.js"></script>
+<script type="text/javascript">
+function resizeWindow()
+{
+top.resizeTo(500,300)
+}
+</script>
 </head>
 
 <body>
-    <div id="person"></div>
-
-    <script type="text/javascript">
-        var personExtend = Vue.extend({
-            template: "<p><a :href='URL'>{{Name}}</a></p>",
-            data: function () {
-                return {
-                    Name: 'jgchen',
-                    URL: 'http://www.baidu.com'
-                }
-            }
-        });
-
-        new personExtend().$mount('#person');
-    </script>
+<form>
+<input type="button" onclick="resizeWindow()" value="调整窗口大小">
+</form>
+<p><b>注释：</b>我们使用的是 <b>top</b> 元素而不是 <b>window</b> 元素来表示顶级框架。如果您没有使用框架，请使用 <b>window</b> 元素。</p>
 </body>
 
 </html>
