@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 编写一个js函数,传入一个非空字符串,
+    计算出现次数最多的字符,返回该字符及 出现次数,结果可能包含多个字符。
+    如传入“xyzzyxyz”,则返回:{y:3, z:3}  -->
+    <script>
+        var str = "xyzzyxyz";
+        var obj = {};
+        for (var i = 0; i < str.length; i++) {
+            var char = str.charAt(i); //charAt()返回字符串指定位置的字符
+            //console.log(char);x,y,z,z,y,x,y,z
+            if(!obj[char]){
+                obj[char] = 1;
+            }else{
+                obj[char] ++;
+            }
+        }
+        //console.log(obj);{x: 2, y: 3, z: 3}
+        //遍历对象，找到出现次数最多的字符的次数
+        var max = 0;
+        for(var key in obj){
+            //console.log(obj[key]); 2,3,3
+            if(obj[key] > max){
+                max = obj[key];
+            }
+        }
+        for(var key in obj){
+            if(obj[key] == max){
+                console.log(key + ":" + max);
+            }
+        }
+    </script>
+</body>
+
+</html>

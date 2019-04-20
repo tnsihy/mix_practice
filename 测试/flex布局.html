@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Flex布局 -->
+    <style>
+    body{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    #header{
+        background-color:#7ecef3;
+        height:120px;
+        width:100%;
+    }
+    #content{
+        width:100%;
+        position:absolute;
+        top:120px;
+        bottom:120px;
+        display: flex
+    }
+    #left{
+        width:15%;
+        height: 100%;
+        background-color: #89c997;
+        position:absolute;
+        left:0;
+    }
+    #center{
+        height:100%;
+        background-color: #53b9be;
+        flex:1;
+    }
+    #right{
+        width:15%;
+        height: 100%;
+        background-color: #89c997;
+        position:absolute;
+        right:0;
+    }
+    #footer{
+        height:120px;
+        width:100%;
+        background-color: #7ecef3;
+        position:absolute;
+        bottom:0;
+    }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="header"></div>
+    <div id="content">
+        <div id="left"></div>
+        <div id="center"></div>
+        <div id="right"></div>
+    </div>
+    <div id="footer"></div>
+</body>
+
+</html>
